@@ -1,6 +1,10 @@
 # Caddy Config PHP
 Caddy v2 API helper for PHP.
 
+![Build Status Badge](https://github.com/ohseesoftware/caddy-config-php/workflows/Build/badge.svg)
+
+---
+
 Caddy v2 allows you to update your Caddy configuration via a JSON API. This package is a simple helper library to update parts of your configuration.
 
 Functionality for updating all aspects of the configuration will be added over time.

@@ -1,0 +1,29 @@
+{
+    "name": "ohseesoftware/caddy-config-php",
+    "description": "Caddy v2 API helper library.",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.4"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "phpunit/phpunit": "^8.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Owen Conti",
+            "email": "owen@ohseemedia.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "OhSeeSoftware\\CaddyConfig\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}

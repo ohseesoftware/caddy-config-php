@@ -3,22 +3,19 @@
 namespace Tests;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
-use OhSeeSoftware\CaddyConfig\Client;
+use GuzzleHttp\Psr7\Response as GuzzleHttpResponse;
+use OhSeeSoftware\CaddyConfig\Request;
+use OhSeeSoftware\CaddyConfig\Response;
 use PHPUnit\Framework\TestCase;
 
 class RequestTest extends TestCase
 {
-    /** @var Client */
-    private $client;
-
     public function setUp(): void
     {
         $mockBuilder = $this->getMockBuilder(GuzzleHttpClient::class);
         $this->mock = $mockBuilder->setMethods(['request'])->getMock();
-        
-        $this->client = new Client;
 
-        $this->request = $this->client->request();
+        $this->request = new Request('localhost:2019');
         $this->request->http = $this->mock;
     }
 
@@ -51,6 +48,20 @@ class RequestTest extends TestCase
     }
 
     /** @test */
+    public function it_sets_base_uri_when_creating_http_client()
+    {
+        // Given
+        $this->request = new Request('example.com:443');
+
+        // When
+        $config = $this->request->http->getConfig('base_uri');
+
+        // Then
+        $this->assertEquals('example.com', $config->getHost());
+        $this->assertEquals(443, $config->getPort());
+    }
+
+    /** @test */
     public function it_sends_request_to_add_a_host()
     {
         // Given
@@ -58,7 +69,8 @@ class RequestTest extends TestCase
             ->method('request')
             ->with('POST', '/config/apps/http/servers/srv0/routes/0/match/0/host', [
                 'json' => ['example.com']
-            ]);
+            ])
+            ->willReturn(new GuzzleHttpResponse(200));
         
         // When
         $this->request->http()
@@ -66,5 +78,22 @@ class RequestTest extends TestCase
             ->route(0)
             ->match(0)
             ->addHost('example.com');
+    }
+
+    /** @test */
+    public function it_returns_a_response_instance()
+    {
+        // Given
+        $this->mock->expects($this->once())
+            ->method('request')
+            ->with('POST', '/config', [])
+            ->willReturn(new GuzzleHttpResponse(200));
+        
+        // When
+        $this->request->uri = '/config';
+        $response = $this->request->sendRequest('POST', []);
+
+        // Then
+        $this->assertInstanceOf(Response::class, $response);
     }
 }

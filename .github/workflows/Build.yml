@@ -15,7 +15,7 @@ jobs:
         run: ./vendor/bin/phpunit
   release:
     name: Release
-    if: ${{ github.ref == 'master' }}
+    if: ${{ $GITHUB_REF == 'master' }}
     needs: test
     runs-on: ubuntu-18.04
     steps:

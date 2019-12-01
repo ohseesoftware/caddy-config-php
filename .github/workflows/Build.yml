@@ -1,11 +1,22 @@
-name: Release
-on:
-  push:
-    branches:
-      - master
+name: Build
+on: [push]
 jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Composer Install
+        run: composer install
+      - name: PHPCS
+        run: ./vendor/bin/phpcs src tests
+      - name: Run Tests
+        run: ./vendor/bin/phpunit
   release:
     name: Release
+    if: ${{ github.ref == 'master' }}
+    needs: test
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout

@@ -2,6 +2,7 @@
 Caddy v2 API helper for PHP.
 
 ![Build Status Badge](https://github.com/ohseesoftware/caddy-config-php/workflows/Build/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/ohseesoftware/caddy-config-php/badge.svg?branch=master)](https://coveralls.io/github/ohseesoftware/caddy-config-php?branch=master)
 
 ---
 

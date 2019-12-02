@@ -17,12 +17,12 @@ jobs:
       - name: PHPCS
         run: ./vendor/bin/phpcs src tests
       - name: Run Tests
-        run: ./vendor/bin/phpunit --coverage-clover coverage.xml
+        run: ./vendor/bin/phpunit --coverage-clover build/coverage.xml
       - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: coverage.xml
+        run: ./vendor/bin/php-coveralls --coverage_clover build/coverage.xml --json_path build/coveralls-upload.json
+        env:
+          COVERALLS_RUN_LOCALLY: 1
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
   release:
     name: Release
     if: github.ref == 'refs/heads/master'

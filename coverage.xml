@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1575261791">
+  <project timestamp="1575261791">
+    <package name="OhSeeSoftware\CaddyConfig">
+      <file name="/Users/owen/development/caddy-config-php/src/Client.php">
+        <class name="OhSeeSoftware\CaddyConfig\Client" namespace="OhSeeSoftware\CaddyConfig">
+          <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
+        </class>
+        <line num="10" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="12" type="stmt" count="3"/>
+        <line num="13" type="stmt" count="3"/>
+        <line num="21" type="method" name="setCaddyHost" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="23" type="stmt" count="3"/>
+        <line num="24" type="stmt" count="3"/>
+        <line num="32" type="method" name="request" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="34" type="stmt" count="1"/>
+        <metrics loc="36" ncloc="24" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
+      </file>
+      <file name="/Users/owen/development/caddy-config-php/src/Request.php">
+        <class name="OhSeeSoftware\CaddyConfig\Request" namespace="OhSeeSoftware\CaddyConfig">
+          <metrics complexity="8" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="26" coveredelements="26"/>
+        </class>
+        <line num="15" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="8"/>
+        <line num="17" type="stmt" count="8"/>
+        <line num="18" type="stmt" count="8"/>
+        <line num="20" type="stmt" count="8"/>
+        <line num="28" type="method" name="addHost" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="39" type="method" name="http" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="41" type="stmt" count="2"/>
+        <line num="42" type="stmt" count="2"/>
+        <line num="51" type="method" name="server" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="53" type="stmt" count="2"/>
+        <line num="54" type="stmt" count="2"/>
+        <line num="63" type="method" name="route" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="65" type="stmt" count="2"/>
+        <line num="66" type="stmt" count="2"/>
+        <line num="75" type="method" name="match" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="77" type="stmt" count="2"/>
+        <line num="78" type="stmt" count="2"/>
+        <line num="88" type="method" name="sendRequest" visibility="public" complexity="2" crap="2" count="2"/>
+        <line num="90" type="stmt" count="2"/>
+        <line num="91" type="stmt" count="2"/>
+        <line num="92" type="stmt" count="1"/>
+        <line num="95" type="stmt" count="2"/>
+        <line num="97" type="stmt" count="2"/>
+        <metrics loc="99" ncloc="61" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="26" coveredelements="26"/>
+      </file>
+      <file name="/Users/owen/development/caddy-config-php/src/Response.php">
+        <class name="OhSeeSoftware\CaddyConfig\Response" namespace="OhSeeSoftware\CaddyConfig">
+          <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
+        </class>
+        <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="5"/>
+        <line num="14" type="stmt" count="5"/>
+        <line num="15" type="stmt" count="5"/>
+        <line num="22" type="method" name="getBody" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="24" type="stmt" count="1"/>
+        <line num="32" type="method" name="isSuccessful" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="34" type="stmt" count="2"/>
+        <metrics loc="36" ncloc="25" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
+      </file>
+    </package>
+    <metrics files="3" loc="171" ncloc="110" classes="3" methods="13" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="28" coveredstatements="28" elements="41" coveredelements="41"/>
+  </project>
+</coverage>

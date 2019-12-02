@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
-        uses: git checkout "${GITHUB_REF:11}"
+        run: git checkout "${GITHUB_REF:11}"
       - name: Setup PHP
         uses: shivammathur/setup-php@v1
         with:
@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
-        uses: git checkout "${GITHUB_REF:11}"
+        run: git checkout "${GITHUB_REF:11}"
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:

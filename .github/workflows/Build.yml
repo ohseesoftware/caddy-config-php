@@ -18,11 +18,6 @@ jobs:
         run: ./vendor/bin/phpcs src tests
       - name: Run Tests
         run: ./vendor/bin/phpunit --coverage-clover build/coverage.xml
-      - name: Coveralls
-        run: ./vendor/bin/php-coveralls -v --coverage_clover build/coverage.xml --json_path build/coveralls-upload.json
-        env:
-          COVERALLS_RUN_LOCALLY: 1
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
   release:
     name: Release
     if: github.ref == 'refs/heads/master'
@@ -31,6 +26,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Coveralls
+        run: ./vendor/bin/php-coveralls -v --coverage_clover build/coverage.xml --json_path build/coveralls-upload.json
+        env:
+          COVERALLS_RUN_LOCALLY: 1
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:

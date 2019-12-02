@@ -7,12 +7,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: '7.3'
+          coverage: xdebug
       - name: Composer Install
         run: composer install
       - name: PHPCS
         run: ./vendor/bin/phpcs src tests
       - name: Run Tests
-        run: ./vendor/bin/phpunit
+        run: ./vendor/bin/phpunit --coverage-clover coverage.xml
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: coverage.xml
   release:
     name: Release
     if: github.ref == 'refs/heads/master'

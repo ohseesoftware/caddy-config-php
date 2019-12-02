@@ -5,6 +5,7 @@ jobs:
     name: Test
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@master
       - name: Checkout
         run: git checkout "${GITHUB_REF:11}"
       - name: Setup PHP
@@ -29,6 +30,7 @@ jobs:
     needs: test
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@master
       - name: Checkout
         run: git checkout "${GITHUB_REF:11}"
       - name: Setup Node.js

@@ -49,4 +49,103 @@ No arguments.
 
 ### Request
 
+**__constructor()**
 
+Creates a new instance of the `Request` class.
+
+Arguments:
+
+* `$caddyHost` - _string_: The address where the [Caddy config endpoint](https://github.com/caddyserver/caddy/wiki/v2:-Documentation#admin) is listening.
+
+**addHost()**
+
+Sends a request to Caddy to add the given host.
+
+Arguments:
+
+* `$host` - _string_: The host to add.
+
+Returns:
+
+* `Response` - The response from Caddy wrapped in a `Response` instance.
+
+**http()**
+
+Adds the http path, "/apps/http", to the request URI.
+
+No arguments.
+
+Returns:
+
+* `Request` - The request instance (allows chaining).
+
+**server()**
+
+Adds the server path, "/servers/{server}", to the request URI.
+
+Arguments:
+
+* `$server` - _string_: The name of the server to target.
+
+Returns:
+
+* `Request` - The request instance (allows chaining).
+
+**route()**
+
+Adds the route path, "/routes/{routeIndex}", to the request URI.
+
+Arguments:
+
+* `$routeIndex` - _int_: The route to target.
+
+Returns:
+
+* `Request` - The request instance (allows chaining).
+
+**match()**
+
+Adds the match path, "/match/{matchIndex}", to the request URI.
+
+Arguments:
+
+* `$matchIndex` - _int_: The match to target.
+
+Returns:
+
+* `Request` - The request instance (allows chaining).
+
+**sendRequest()**
+
+Sends the built request to the Caddy server.
+
+Arguments:
+
+* `$method` - _string_: The method for the request.
+* `$body` - _array|nuullable_: The request body to send to Caddy.
+
+Returns:
+
+* `Response` - A new instance of a `Response` instance.
+
+### Response
+
+**__constructor()**
+
+Creates a new instance of the `Response` class.
+
+Arguments:
+
+* `$response` - _ResponseInterface_: Instance of a `ResponseInterface` (created by Guzzle).
+
+**getBody()**
+
+Returns the response body as a string.
+
+No arguments.
+
+**isSuccessful()**
+
+Returns a boolean indicating if the request was successful. Status codes of 200 or 201 are considered successful, everything else is not.
+
+No arguments.

@@ -85,10 +85,8 @@ class Request
      * @param array $body
      * @return void
      */
-    private function sendRequest(string $method, array $body = null)
+    public function sendRequest(string $method, array $body = null)
     {
-        // Validate the request
-
         $options = [];
         if ($body) {
             $options['json'] = $body;
@@ -96,6 +94,6 @@ class Request
 
         $response = $this->http->request($method, $this->uri, $options);
 
-        return $response;
+        return new Response($response);
     }
 }

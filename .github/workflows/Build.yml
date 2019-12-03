@@ -17,20 +17,13 @@ jobs:
         run: composer install
       - name: PHPCS
         run: ./vendor/bin/phpcs src tests
-      #- name: Run Tests
-      #  run: ./vendor/bin/phpunit --coverage-clover build/coverage.xml
-      #- name: Coveralls
-      #  if: github.ref == 'refs/heads/master'
-      #  run: ./vendor/bin/php-coveralls -v --coverage_clover build/coverage.xml --json_path build/coveralls-upload.json
-      #  env:
-      #    COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v2.3.0
+      - name: Run Tests
+        run: ./vendor/bin/phpunit --coverage-clover build/coverage.xml
+      - name: Coveralls
+        if: github.ref == 'refs/heads/master'
+        run: ./vendor/bin/php-coveralls -v --coverage_clover build/coverage.xml --json_path build/coveralls-upload.json
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }} 
-        with:
-          coverageCommand: ./vendor/bin/phpunit --coverage-clover build/coverage.xml
-          debug: true
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
   release:
     name: Release
     if: github.ref == 'refs/heads/master'

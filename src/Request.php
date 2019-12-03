@@ -28,7 +28,7 @@ class Request
     public function addHost(string $host)
     {
         $this->uri .= '/host';
-        $this->sendRequest('POST', [$host]);
+        return $this->sendRequest('POST', [$host]);
     }
 
     /**

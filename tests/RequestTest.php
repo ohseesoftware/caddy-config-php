@@ -73,11 +73,14 @@ class RequestTest extends TestCase
             ->willReturn(new GuzzleHttpResponse(200));
         
         // When
-        $this->request->http()
+        $response = $this->request->http()
             ->server('srv0')
             ->route(0)
             ->match(0)
             ->addHost('example.com');
+
+        // Then
+        $this->assertInstanceOf(Response::class, $response);
     }
 
     /** @test */

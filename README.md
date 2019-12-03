@@ -157,4 +157,4 @@ No arguments.
 
 ## License
 
-The MIT License (MIT). Please see [License File](/license) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/ohseesoftware/caddy-config-php/blob/master/LICENSE) for more information.

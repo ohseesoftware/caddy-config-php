@@ -1,8 +1,12 @@
 # Caddy Config PHP
 Caddy v2 API helper for PHP.
 
+[![Current Release](https://img.shields.io/github/release/ohseesoftware/caddy-config-php.svg?style=flat-square)](https://github.com/ohseesoftware/caddy-config-php/releases)
 ![Build Status Badge](https://github.com/ohseesoftware/caddy-config-php/workflows/Build/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/ohseesoftware/caddy-config-php/badge.svg?branch=master)](https://coveralls.io/github/ohseesoftware/caddy-config-php?branch=master)
+[![Maintainability Score](https://img.shields.io/codeclimate/maintainability/ohseesoftware/caddy-config-php.svg?style=flat-square)](https://codeclimate.com/github/ohseesoftware/caddy-config-php)
+[![Downloads](https://img.shields.io/packagist/dt/ohseesoftware/caddy-config-php.svg?style=flat-square)](https://packagist.org/packages/ohseesoftware/caddy-config-php)
+[![MIT License](https://img.shields.io/github/license/ohseesoftware/caddy-config-php.svg?style=flat-square)](https://github.com/ohseesoftware/caddy-config-php/blob/master/LICENSE)
 
 ---
 
@@ -150,3 +154,7 @@ No arguments.
 Returns a boolean indicating if the request was successful. Status codes of 200 or 201 are considered successful, everything else is not.
 
 No arguments.
+
+## License
+
+The MIT License (MIT). Please see [License File](https://github.com/ohseesoftware/caddy-config-php/blob/master/LICENSE) for more information.

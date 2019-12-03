@@ -68,7 +68,8 @@ class RequestTest extends TestCase
         $this->mock->expects($this->once())
             ->method('request')
             ->with('POST', '/config/apps/http/servers/srv0/routes/0/match/0/host', [
-                'json' => 'example.com'
+                'json'        => 'example.com',
+                'http_errors' => false
             ])
             ->willReturn(new GuzzleHttpResponse(200));
         
@@ -89,7 +90,9 @@ class RequestTest extends TestCase
         // Given
         $this->mock->expects($this->once())
             ->method('request')
-            ->with('POST', '/config', [])
+            ->with('POST', '/config', [
+                'http_errors' => false
+            ])
             ->willReturn(new GuzzleHttpResponse(200));
         
         // When
@@ -106,7 +109,9 @@ class RequestTest extends TestCase
         // Given
         $this->mock->expects($this->once())
             ->method('request')
-            ->with('POST', '/config', [])
+            ->with('POST', '/config', [
+                'http_errors' => false
+            ])
             ->willReturn(new GuzzleHttpResponse(500));
         
         // When

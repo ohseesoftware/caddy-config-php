@@ -154,3 +154,7 @@ No arguments.
 Returns a boolean indicating if the request was successful. Status codes of 200 or 201 are considered successful, everything else is not.
 
 No arguments.
+
+## License
+
+The MIT License (MIT). Please see [License File](/license) for more information.

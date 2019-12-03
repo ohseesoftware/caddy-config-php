@@ -3,6 +3,7 @@
 namespace OhSeeSoftware\CaddyConfig;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Request
 {
@@ -28,7 +29,7 @@ class Request
     public function addHost(string $host)
     {
         $this->uri .= '/host';
-        $this->sendRequest('POST', [$host]);
+        return $this->sendRequest('POST', $host);
     }
 
     /**
@@ -82,18 +83,21 @@ class Request
      * Sends the configured request.
      *
      * @param string $method
-     * @param array $body
+     * @param mixed $body
      * @return void
      */
-    public function sendRequest(string $method, array $body = null)
+    public function sendRequest(string $method, $body = null)
     {
-        $options = [];
+        $options = [
+            'http_errors' => false
+        ];
+
         if ($body) {
             $options['json'] = $body;
         }
 
         $response = $this->http->request($method, $this->uri, $options);
-
+        
         return new Response($response);
     }
 }

@@ -68,16 +68,20 @@ class RequestTest extends TestCase
         $this->mock->expects($this->once())
             ->method('request')
             ->with('POST', '/config/apps/http/servers/srv0/routes/0/match/0/host', [
-                'json' => ['example.com']
+                'json'        => 'example.com',
+                'http_errors' => false
             ])
             ->willReturn(new GuzzleHttpResponse(200));
         
         // When
-        $this->request->http()
+        $response = $this->request->http()
             ->server('srv0')
             ->route(0)
             ->match(0)
             ->addHost('example.com');
+
+        // Then
+        $this->assertInstanceOf(Response::class, $response);
     }
 
     /** @test */
@@ -86,8 +90,29 @@ class RequestTest extends TestCase
         // Given
         $this->mock->expects($this->once())
             ->method('request')
-            ->with('POST', '/config', [])
+            ->with('POST', '/config', [
+                'http_errors' => false
+            ])
             ->willReturn(new GuzzleHttpResponse(200));
+        
+        // When
+        $this->request->uri = '/config';
+        $response = $this->request->sendRequest('POST', []);
+
+        // Then
+        $this->assertInstanceOf(Response::class, $response);
+    }
+
+    /** @test */
+    public function it_returns_a_response_instance_for_an_error_request()
+    {
+        // Given
+        $this->mock->expects($this->once())
+            ->method('request')
+            ->with('POST', '/config', [
+                'http_errors' => false
+            ])
+            ->willReturn(new GuzzleHttpResponse(500));
         
         // When
         $this->request->uri = '/config';

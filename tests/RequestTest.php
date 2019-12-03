@@ -68,7 +68,7 @@ class RequestTest extends TestCase
         $this->mock->expects($this->once())
             ->method('request')
             ->with('POST', '/config/apps/http/servers/srv0/routes/0/match/0/host', [
-                'json' => ['example.com']
+                'json' => 'example.com'
             ])
             ->willReturn(new GuzzleHttpResponse(200));
         

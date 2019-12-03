@@ -28,7 +28,7 @@ class Request
     public function addHost(string $host)
     {
         $this->uri .= '/host';
-        return $this->sendRequest('POST', [$host]);
+        return $this->sendRequest('POST', $host);
     }
 
     /**
@@ -82,10 +82,10 @@ class Request
      * Sends the configured request.
      *
      * @param string $method
-     * @param array $body
+     * @param mixed $body
      * @return void
      */
-    public function sendRequest(string $method, array $body = null)
+    public function sendRequest(string $method, $body = null)
     {
         $options = [];
         if ($body) {

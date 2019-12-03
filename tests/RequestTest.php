@@ -99,4 +99,21 @@ class RequestTest extends TestCase
         // Then
         $this->assertInstanceOf(Response::class, $response);
     }
+
+    /** @test */
+    public function it_returns_a_response_instance_for_an_error_request()
+    {
+        // Given
+        $this->mock->expects($this->once())
+            ->method('request')
+            ->with('POST', '/config', [])
+            ->willReturn(new GuzzleHttpResponse(500));
+        
+        // When
+        $this->request->uri = '/config';
+        $response = $this->request->sendRequest('POST', []);
+
+        // Then
+        $this->assertInstanceOf(Response::class, $response);
+    }
 }

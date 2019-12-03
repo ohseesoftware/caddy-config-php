@@ -3,6 +3,7 @@
 namespace OhSeeSoftware\CaddyConfig;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Request
 {
@@ -87,13 +88,16 @@ class Request
      */
     public function sendRequest(string $method, $body = null)
     {
-        $options = [];
+        $options = [
+            'http_errors' => false
+        ];
+
         if ($body) {
             $options['json'] = $body;
         }
 
         $response = $this->http->request($method, $this->uri, $options);
-
+        
         return new Response($response);
     }
 }

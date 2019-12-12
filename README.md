@@ -54,6 +54,18 @@ No arguments.
 
 ### Request
 
+Use the `Request` class to compose your request to send to Caddy. Here's an example of how you can add a new host to a server:
+
+```php
+$client = new OhSeeSoftware\CaddyConfig\Client('localhost:2019');
+$client->request()
+  ->http()
+  ->server('srv0')
+  ->route(0)
+  ->match(0)
+  ->addHost('example.com');
+```
+
 **__constructor()**
 
 Creates a new instance of the `Request` class.

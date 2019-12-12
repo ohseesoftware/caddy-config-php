@@ -62,6 +62,22 @@ class RequestTest extends TestCase
     }
 
     /** @test */
+    public function it_sends_request_to_get_current_configuration()
+    {
+        // Given
+        $this->mock->expects($this->once())
+            ->method('request')
+            ->with('GET', '/config/apps/http')
+            ->willReturn(new GuzzleHttpResponse(200));
+        
+        // When
+        $response = $this->request->http()->get();
+
+        // Then
+        $this->assertInstanceOf(Response::class, $response);
+    }
+
+    /** @test */
     public function it_sends_request_to_add_a_host()
     {
         // Given

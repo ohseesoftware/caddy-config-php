@@ -78,6 +78,20 @@ class RequestTest extends TestCase
     }
 
     /** @test */
+    public function it_adds_origin_header_to_request()
+    {
+        // Given
+        $this->request = new Request('localhost:2019', [
+            'Origin' => 'abc123'
+        ]);
+
+        // Then
+        $this->assertEquals([
+            'Origin' => 'abc123'
+        ], $this->request->options['headers']);
+    }
+
+    /** @test */
     public function it_sends_request_to_add_a_host()
     {
         // Given
@@ -85,7 +99,8 @@ class RequestTest extends TestCase
             ->method('request')
             ->with('POST', '/config/apps/http/servers/srv0/routes/0/match/0/host', [
                 'json'        => 'example.com',
-                'http_errors' => false
+                'http_errors' => false,
+                'headers'     => []
             ])
             ->willReturn(new GuzzleHttpResponse(200));
         
@@ -107,7 +122,8 @@ class RequestTest extends TestCase
         $this->mock->expects($this->once())
             ->method('request')
             ->with('POST', '/config', [
-                'http_errors' => false
+                'http_errors' => false,
+                'headers'     => []
             ])
             ->willReturn(new GuzzleHttpResponse(200));
         
@@ -126,7 +142,8 @@ class RequestTest extends TestCase
         $this->mock->expects($this->once())
             ->method('request')
             ->with('POST', '/config', [
-                'http_errors' => false
+                'http_errors' => false,
+                'headers'     => []
             ])
             ->willReturn(new GuzzleHttpResponse(500));
         

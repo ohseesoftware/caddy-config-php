@@ -7,9 +7,13 @@ class Client
     /** @var string */
     public $caddyHost;
 
-    public function __construct(string $caddyHost = 'localhost:2019')
+    /** @var array */
+    public $headers;
+
+    public function __construct(string $caddyHost = 'localhost:2019', array $headers = [])
     {
         $this->setCaddyHost($caddyHost);
+        $this->setHeaders($headers);
     }
 
     /**
@@ -25,12 +29,24 @@ class Client
     }
 
     /**
+     * Sets the headers.
+     *
+     * @param string $headers
+     * @return Client
+     */
+    public function setHeaders(array $headers = [])
+    {
+        $this->headers = $headers;
+        return $this;
+    }
+
+    /**
      * Creates a new Request instance.
      *
      * @return Request
      */
     public function request(): Request
     {
-        return new Request($this->caddyHost);
+        return new Request($this->caddyHost, $this->headers);
     }
 }

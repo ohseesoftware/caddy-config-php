@@ -23,6 +23,17 @@ class ClientTest extends TestCase
     }
 
     /** @test */
+    public function it_can_be_initialized_with_custom_headers()
+    {
+        $client = new Client('localhost:2019', [
+            'Origin' => 'abc1234'
+        ]);
+        $this->assertEquals([
+            'Origin' => 'abc1234'
+        ], $client->headers);
+    }
+
+    /** @test */
     public function it_creates_new_request_instance()
     {
         $client = new Client();

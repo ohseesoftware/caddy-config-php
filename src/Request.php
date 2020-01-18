@@ -12,11 +12,16 @@ class Request
     /** @var string */
     public $uri = '/config';
 
-    public function __construct(string $caddyHost)
+    public function __construct(string $caddyHost, array $headers = [])
     {
         $this->http = new Client([
             'base_uri' => $caddyHost
         ]);
+
+        $this->options = [
+            'http_errors' => false,
+            'headers'     => $headers
+        ];
     }
 
     /**
@@ -97,15 +102,11 @@ class Request
      */
     public function sendRequest(string $method, $body = null): Response
     {
-        $options = [
-            'http_errors' => false
-        ];
-
         if ($body) {
-            $options['json'] = $body;
+            $this->options['json'] = $body;
         }
 
-        $response = $this->http->request($method, $this->uri, $options);
+        $response = $this->http->request($method, $this->uri, $this->options);
         
         return new Response($response);
     }

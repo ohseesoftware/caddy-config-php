@@ -3,7 +3,7 @@
     "description": "Caddy v2 API helper library.",
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "^6.4"
+        "guzzlehttp/guzzle": "^7.2"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "*",

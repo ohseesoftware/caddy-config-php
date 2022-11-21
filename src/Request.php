@@ -12,15 +12,18 @@ class Request
     /** @var string */
     public $uri = '/config';
 
-    public function __construct(string $caddyHost, array $headers = [])
+    public function __construct(string $caddyHost, array $headers = [], array $certs = [], array $curlOptions = [])
     {
         $this->http = new Client([
             'base_uri' => $caddyHost
         ]);
 
         $this->options = [
+            'cert' => $certs->public,
+            'ssl_key' => $certs->key,
             'http_errors' => false,
-            'headers'     => $headers
+            'headers'     => $headers,
+            'curl.options' => $curlOptions,
         ];
     }
 

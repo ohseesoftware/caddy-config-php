@@ -16,10 +16,14 @@ class Client
     /** @var array */
     public $curlOptions;
 
-    public function __construct(string $caddyHost = 'localhost:2019', array $headers = [])
+    /** @var boolean */
+    public $verify;
+
+    public function __construct(string $caddyHost = 'localhost:2019', array $headers = [], bool $verify = true, array $certs = [], array $curlOptions = [])
     {
         $this->setCaddyHost($caddyHost);
         $this->setHeaders($headers);
+        $this->setVerify($verify);
         $this->setCerts($certs);
         $this->setCurlOptions($curlOptions);
     }
@@ -49,7 +53,19 @@ class Client
     }
 
     /**
-     * Sets the headers.
+     * Sets the verify
+     *
+     * @param boolean $verify
+     * @return Client
+     */
+    public function setVerify(bool $verify = true)
+    {
+        $this->verify = $verify;
+        return $this;
+    }
+
+    /**
+     * Sets the certificates
      *
      * @param string $headers
      * @return Client
@@ -61,7 +77,7 @@ class Client
     }
 
     /**
-     * Sets the headers.
+     * Sets the curl options
      *
      * @param string $headers
      * @return Client
@@ -79,6 +95,6 @@ class Client
      */
     public function request(): Request
     {
-        return new Request($this->caddyHost, $this->headers, $this->certs, $this->curlOptions);
+        return new Request($this->caddyHost, $this->headers, $this->verify, $this->certs, $this->curlOptions);
     }
 }
